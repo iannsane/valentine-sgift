@@ -1,0 +1,199 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: 100vh;
+    margin: 0;
+    /* Soft Sunrise Background */
+    background: linear-gradient(to top, #ffafbd 0%, #ffc3a0 40%, #a1c4fd 100%);
+    overflow: hidden;
+    font-family: 'Georgia', serif;
+}
+
+/* --- MESSAGES --- */
+.messages-container {
+    position: absolute;
+    top: 15%;
+    width: 100%;
+    text-align: center;
+    z-index: 100;
+}
+
+#v-day-message {
+    color: #ffffff;
+    font-size: 2.5rem;
+    font-style: italic;
+    font-weight: lighter;
+    opacity: 0;
+    transition: opacity 2s ease;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+    margin-bottom: 10px;
+}
+
+#bloom-text {
+    color: #5d4037;
+    font-size: 1.1rem;
+    font-style: italic;
+    opacity: 0;
+    transition: opacity 2s ease;
+    letter-spacing: 1px;
+}
+
+/* --- MENU STYLES --- */
+#flower-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #1a1a2e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: opacity 1.5s ease;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.menu-content {
+    text-align: center;
+    max-width: 500px;
+}
+
+.menu-content p {
+    color: #e0e0e0;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 35px;
+    font-style: italic;
+}
+
+#start-btn {
+    background: transparent;
+    border: 1px solid #ff85a2;
+    color: #ff85a2;
+    padding: 14px 30px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 50px;
+    transition: all 0.4s ease;
+}
+
+#start-btn:hover {
+    background: #ff85a2;
+    color: #fff;
+    box-shadow: 0 0 25px rgba(255, 133, 162, 0.5);
+    transform: scale(1.05);
+}
+
+/* --- GARDEN STRUCTURE --- */
+.field {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 2s ease;
+}
+
+.garden { position: absolute; bottom: 0; z-index: 10; }
+
+.plant-group {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    transform-origin: bottom center;
+    animation: swayPlant 4s ease-in-out infinite alternate;
+}
+
+@keyframes swayPlant {
+    0% { transform: translateX(-50%) rotate(-1.5deg); }
+    100% { transform: translateX(-50%) rotate(1.5deg); }
+}
+
+.stem {
+    width: 4px;
+    height: 0;
+    background: linear-gradient(to top, #2d5a27, #5c9e54);
+    position: absolute;
+    bottom: 0;
+    transform-origin: bottom center;
+    border-radius: 2px;
+    animation: growStem 2s forwards ease-out;
+}
+
+@keyframes growStem { to { height: var(--h); } }
+
+/* --- GRASS BLOOM ANIMATION --- */
+.grass-blade {
+    position: absolute;
+    bottom: -5px;
+    background: linear-gradient(to top, #1a5c1a, #4a7c44);
+    border-radius: 100% 100% 0 0;
+    transform-origin: bottom;
+    opacity: 0.9;
+    height: 0; 
+    animation: growGrass 2s forwards ease-out, swayPlant 3s ease-in-out infinite alternate;
+}
+
+@keyframes growGrass {
+    to { height: var(--final-h); }
+}
+
+.flower { position: absolute; z-index: 20; }
+
+.center {
+    width: 22px;
+    height: 16px;
+    background: radial-gradient(circle, #ffcc00, #ff8800);
+    border-radius: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    z-index: 50;
+}
+
+.petal {
+    position: absolute;
+    width: 10px;
+    height: 28px;
+    background: #ffffff;
+    border-radius: 50%;
+    transform-origin: bottom center;
+    left: -5px;
+    bottom: 0;
+    opacity: 0;
+}
+
+/* --- PARTICLES --- */
+.heart {
+    position: absolute;
+    color: #ff85a2;
+    pointer-events: none;
+    z-index: 5;
+    animation: floatUp 7s linear forwards;
+}
+
+.sparkle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: #ffffff;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #ffffff;
+    animation: drift 5s ease-in-out forwards;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0) scale(0.8); opacity: 0; }
+    20% { opacity: 0.7; }
+    100% { transform: translateY(-110vh) translateX(40px) rotate(20deg); opacity: 0; }
+}
+
+@keyframes drift {
+    0% { transform: translate(0, 0); opacity: 0; }
+    20% { opacity: 1; }
+    100% { transform: translate(30px, -150px); opacity: 0; }
+}
